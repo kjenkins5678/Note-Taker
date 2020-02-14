@@ -35,12 +35,18 @@ app.get("/api/notes", function(req, res) {
 });
 
 app.post("/api/notes", function(req, res) {
-  var newNote = req.body;
+  
+  howManyNotes = db.length;
+
+  let noteID = howManyNotes + 1;
+
+  let newNote = req.body;
+
+  newNote["id"] = noteID;
+  
   db.push(newNote);
 
   console.log(db);
-
-  res.json(newNote);
 });
 
 // Starts the server to begin listening
