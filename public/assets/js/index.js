@@ -105,13 +105,8 @@ var handleRenderSaveBtn = function() {
 
 // Render's the list of note titles
 var renderNoteList = function(notes) {
+
   $noteList.empty();
-
-  $.ajax({ url: "/api/waitlist", method: "GET" })
-      .then(function(waitData) {
-        console.log(waitData);
-
-      });
 
   var noteListItems = [];
 
