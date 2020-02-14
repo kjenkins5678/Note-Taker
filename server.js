@@ -2,6 +2,7 @@
 // =============================================================
 var express = require("express");
 var path = require("path");
+var fs = require("fs");
 
 // Sets up the Express App
 // =============================================================
@@ -16,7 +17,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Read the Data
-var db = require("./db/db.json");
+let rawdata = fs.readFileSync('./db/db.json');
+let db = JSON.parse(rawdata);
 
 // Routes
 // =============================================================
@@ -35,18 +37,32 @@ app.get("/api/notes", function(req, res) {
 });
 
 app.post("/api/notes", function(req, res) {
+
   
   howManyNotes = db.length;
 
-  let noteID = howManyNotes + 1;
+  let noteID = howManyNotes;
 
   let newNote = req.body;
+
+  res.json(newNote);
 
   newNote["id"] = noteID;
   
   db.push(newNote);
 
   console.log(db);
+  console.log(typeof db);
+  console.log(db.length)
+
+  let data = JSON.stringify(db);
+  fs.writeFileSync('./db/db.json', data);
+  console.log("Successfully wrote db file");
+
+  // rawdata = fs.readFileSync('./db/db.json');
+  // db = JSON.parse(rawdata);
+
+  // });
 });
 
 // Starts the server to begin listening
