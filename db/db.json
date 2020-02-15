@@ -1,1 +1,1 @@
-[{"title":"Test Title","text":"Test text","id":0},{"title":"New Note","text":"Here's my new note","id":1},{"title":"Note 2","text":"This is another note","id":2}]
+[{"title":"Test Title","text":"Test text","id":0},{"title":"Delete","text":"The note is deleted. The console is looking for is at api/notes/id and not finding it. And the page isn't refreshing with the newly deleted note.","id":1},{"title":"No Post res.json()","text":"What happens when I remove the post res.json()?","id":3}]

@@ -45,6 +45,8 @@ app.post("/api/notes", function(req, res) {
 
   let newNote = req.body;
 
+  console.log("post res: ", newNote)
+
   res.json(newNote);
 
   newNote["id"] = noteID;
@@ -58,11 +60,22 @@ app.post("/api/notes", function(req, res) {
   let data = JSON.stringify(db);
   fs.writeFileSync('./db/db.json', data);
   console.log("Successfully wrote db file");
+});
 
-  // rawdata = fs.readFileSync('./db/db.json');
-  // db = JSON.parse(rawdata);
-
-  // });
+app.delete("/api/notes/:id", function(req, res){
+  var selected = req.params.id;
+  for(var i =0; i < db.length; i++)
+  {
+    if(selected == db[i].id)
+    {
+      db.splice(i,1);
+      res.json(db);
+    }
+  }
+  console.log(db);
+  let data = JSON.stringify(db);
+  fs.writeFileSync('./db/db.json', data);
+  console.log("Successfully updated db file");
 });
 
 // Starts the server to begin listening
