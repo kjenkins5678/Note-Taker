@@ -38,7 +38,6 @@ app.get("/api/notes", function(req, res) {
 
 app.post("/api/notes", function(req, res) {
 
-  
   howManyNotes = db.length;
 
   let noteID = howManyNotes;
